@@ -1,0 +1,298 @@
+.seller-shell {
+  min-height: 100vh;
+  display: flex;
+  background: #f8fafc;
+  color: #0f172a;
+  text-align: left;
+}
+
+.seller-sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 2;
+  display: flex;
+  width: 250px;
+  flex-direction: column;
+  padding: 26px 16px 18px;
+  box-sizing: border-box;
+  border-right: 1px solid #e2e8f0;
+  background: #fff;
+}
+
+.seller-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px;
+  color: #0f172a;
+  font-size: 1.15rem;
+  font-weight: 750;
+  letter-spacing: -0.04em;
+}
+
+.seller-brand-mark {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 10px;
+  background: #2563eb;
+  color: #fff;
+}
+
+.seller-brand-light {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.seller-sidebar-heading {
+  margin: 42px 10px 12px;
+  color: #94a3b8;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.seller-navigation {
+  display: grid;
+  gap: 5px;
+}
+
+.seller-nav-link {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px;
+  border-radius: 8px;
+  color: #64748b;
+  font-size: 0.9rem;
+  font-weight: 550;
+  text-decoration: none;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.seller-nav-link:hover {
+  background: #f8fafc;
+  color: #1e293b;
+}
+
+.seller-nav-link.active {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.seller-nav-icon {
+  display: inline-grid;
+  width: 20px;
+  place-items: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.seller-sidebar-bottom {
+  display: grid;
+  gap: 14px;
+  margin-top: auto;
+  padding: 14px 4px 0;
+  border-top: 1px solid #e2e8f0;
+}
+
+.seller-account {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+}
+
+.seller-account-avatar {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-weight: 700;
+}
+
+.seller-account-name {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+}
+
+.seller-account-name strong {
+  overflow: hidden;
+  color: #334155;
+  font-size: 0.78rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.seller-account-name small {
+  color: #94a3b8;
+  font-size: 0.72rem;
+}
+
+.seller-logout-button {
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #64748b;
+  font: inherit;
+  font-size: 0.82rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.seller-logout-button:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.seller-workspace {
+  min-width: 0;
+  min-height: 100vh;
+  flex: 1;
+  margin-left: 250px;
+}
+
+.seller-topbar {
+  display: flex;
+  min-height: 64px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 clamp(22px, 4vw, 48px);
+  border-bottom: 1px solid #e2e8f0;
+  background: #fff;
+}
+
+.seller-topbar-caption {
+  color: #64748b;
+  font-size: 0.82rem;
+}
+
+.seller-topbar-store {
+  overflow: hidden;
+  max-width: 45%;
+  color: #334155;
+  font-size: 0.82rem;
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.seller-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.seller-topbar-logout {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  background: #fff;
+  color: #334155;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.seller-topbar-logout:hover {
+  background: #f1f5f9;
+}
+
+.seller-content {
+  padding: clamp(24px, 4vw, 48px);
+}
+
+.seller-layout-status {
+  display: grid;
+  min-height: 100vh;
+  align-content: center;
+  justify-items: center;
+  gap: 16px;
+  padding: 24px;
+  box-sizing: border-box;
+  color: #64748b;
+  text-align: center;
+}
+
+.seller-layout-retry {
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.seller-layout-retry:hover {
+  background: #1d4ed8;
+}
+
+@media (max-width: 760px) {
+  .seller-shell {
+    display: block;
+  }
+
+  .seller-sidebar {
+    position: sticky;
+    inset: auto;
+    width: 100%;
+    padding: 12px 16px;
+    border-right: 0;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .seller-brand {
+    padding: 0;
+    font-size: 1rem;
+  }
+
+  .seller-brand-mark {
+    width: 30px;
+    height: 30px;
+  }
+
+  .seller-sidebar-heading,
+  .seller-sidebar-bottom {
+    display: none;
+  }
+
+  .seller-navigation {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    margin-top: 10px;
+    padding-bottom: 2px;
+  }
+
+  .seller-nav-link {
+    min-height: 38px;
+    flex: 0 0 auto;
+    gap: 7px;
+    padding: 0 10px;
+    font-size: 0.78rem;
+  }
+
+  .seller-nav-icon {
+    width: auto;
+  }
+
+  .seller-workspace {
+    min-height: calc(100vh - 104px);
+    margin-left: 0;
+  }
+
+  .seller-topbar {
+    min-height: 52px;
+  }
+}

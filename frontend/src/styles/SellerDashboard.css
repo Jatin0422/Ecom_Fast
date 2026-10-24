@@ -1,8 +1,6 @@
 .seller-dashboard-page {
-  min-height: 100vh;
-  padding: clamp(24px, 5vw, 64px);
-  box-sizing: border-box;
-  background: #f8fafc;
+  width: 100%;
+  padding: 0;
   text-align: left;
 }
 
