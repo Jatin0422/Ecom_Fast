@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from fastapi.security import HTTPAuthorizationCredentials,HTTPBearer
 from jwt.exceptions import InvalidTokenError
 
-from app.models import User
+from app.models import Customer, Seller
 from app.security import decode_acess_token
 from app.database import get_db
 
@@ -12,7 +12,7 @@ bearer_scheme=HTTPBearer(auto_error=False)
 def get_current_user(
         credentials:HTTPAuthorizationCredentials | None= Depends(bearer_scheme),
         db:Session= Depends(get_db)
-)->User:
+)->Customer | Seller:
         #1 checking whether there is a bearer token or not
     if credentials is None:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
@@ -24,8 +24,9 @@ def get_current_user(
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                             detail='invalid token')
     #3 Extract the user id from the token
-    user_id=payload.get('sub')
-    if not isinstance(user_id,str):
+    user_id = payload.get("sub")
+    role = payload.get("role")
+    if not isinstance(user_id, str) or role not in {"seller", "user"}:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                             detail='invalid payload')
     try:
@@ -37,7 +38,8 @@ def get_current_user(
         )
     # 4 finding the user in database
 
-    current_user=db.get(User,user_id)
+    account_model = Seller if role == "seller" else Customer
+    current_user = db.get(account_model, user_id)
     if current_user is None:
          raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

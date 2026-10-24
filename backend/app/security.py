@@ -24,11 +24,12 @@ if not SECRET_KEY:
 ALGORITHM='HS256'
 ACESS_TOKEN_EXPIRY_MINUTES=30
 
-def create_acess_token(user_id:int)->str:
+def create_acess_token(user_id: int, role: str) -> str:
     expires_at=datetime.now(timezone.utc)+timedelta(minutes=ACESS_TOKEN_EXPIRY_MINUTES)
 
     payload={
         'sub':str(user_id),
+        'role':role,
         'exp':expires_at
     }
     return jwt.encode(
@@ -42,5 +43,5 @@ def decode_acess_token(token:str)->dict:
         token,
         SECRET_KEY,
         algorithms=[ALGORITHM],
-        options={"require": ["sub", "exp"]}
+        options={"require": ["sub", "role", "exp"]}
     )

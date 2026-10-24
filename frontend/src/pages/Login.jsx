@@ -1,9 +1,10 @@
 import { useState } from "react";
 import "../styles/Login.css";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 function Login() {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const role = searchParams.get("role") === "seller" ? "seller" : "user";
   const [formData, setFormData] = useState({
     email: "",
@@ -29,7 +30,7 @@ function Login() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, role }),
       });
       const data = await response.json();
 
@@ -42,7 +43,11 @@ function Login() {
       }
 
       sessionStorage.setItem("access_token", data.access_token);
-      setMessage("Login successful.");
+      if (role === "seller") {
+        navigate("/seller/dashboard", { replace: true });
+      } else {
+        setMessage("Login successful.");
+      }
     } catch (error) {
       setMessage(
         error instanceof Error

@@ -3,29 +3,30 @@ from typing import Literal
 from pydantic import BaseModel, EmailStr, Field
 
 class UserRegister(BaseModel):
-    full_name:str=Field(min_length=2,max_length=100 )
-    email:EmailStr
-    password:str=Field(min_length=8,max_length=16)
+    full_name: str = Field(min_length=2, max_length=100)
+    email: EmailStr
+    password: str = Field(min_length=8, max_length=16)
     role: Literal["seller", "user"]
-    city:str=Field(min_length=1, max_length=100)
-    state:str=Field(min_length=1, max_length=100)
+    city: str = Field(min_length=1, max_length=100)
+    state: str = Field(min_length=1, max_length=100)
+    address: str = Field(min_length=1, max_length=500)
+    store_name: str | None = Field(default=None, min_length=2, max_length=150)
 
-# data to be responded to the user
-
-class  UserResponse(BaseModel):
-    id:int
-    full_name:str
-    email:EmailStr
-    city:str
-    state:str
-    model_config={'from_attributes':True}
-
-#
+class RegistrationResponse(BaseModel):
+    id: int
+    full_name: str
+    email: EmailStr
+    city: str
+    state: str
+    address: str | None
+    role: Literal["seller", "user"]
+    store_name: str | None = None
 
 class LoginRequest(BaseModel):
-    email:EmailStr
-    password:str=Field(min_length=8,max_length=16)
+    email: EmailStr
+    password: str = Field(min_length=8, max_length=16)
+    role: Literal["seller", "user"]
 
 class TokenResponse(BaseModel):
-    access_token:str
-    token_type:str='bearer'
+    access_token: str
+    token_type: str = "bearer"

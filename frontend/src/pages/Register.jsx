@@ -13,6 +13,8 @@ function Register() {
     password: "",
     city: "",
     state: "",
+    address: "",
+    store_name: "",
     role: initialRole,
   });
 
@@ -33,6 +35,10 @@ async function handleSubmit(event) {
   setMessage("");
 
   try {
+    const registrationData = {
+      ...formData,
+      ...(formData.role === "seller" ? {} : { store_name: null }),
+    };
     const response = await fetch(
       "http://127.0.0.1:8000/auth/register",
       {
@@ -40,7 +46,7 @@ async function handleSubmit(event) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(registrationData),
       }
     );
 
@@ -130,6 +136,35 @@ async function handleSubmit(event) {
             placeholder="Enter your state"
             required
           />
+
+          <label htmlFor="address">Address</label>
+          <input
+            id="address"
+            name="address"
+            type="text"
+            value={formData.address}
+            onChange={handleChange}
+            placeholder="Enter your address"
+            autoComplete="street-address"
+            required
+          />
+
+          {formData.role === "seller" && (
+            <>
+              <label htmlFor="store_name">Store Name</label>
+              <input
+                id="store_name"
+                name="store_name"
+                type="text"
+                value={formData.store_name}
+                onChange={handleChange}
+                placeholder="Enter your store name"
+                minLength={2}
+                maxLength={150}
+                required
+              />
+            </>
+          )}
 
           <label htmlFor="password">Password</label>
           <input

@@ -1,5 +1,5 @@
 from fastapi import  FastAPI
-from app.routers import auth
+from app.routers import auth, seller
 from fastapi.middleware.cors import CORSMiddleware
 
 app=FastAPI(title='Ecom-app')
@@ -11,6 +11,7 @@ app.add_middleware( CORSMiddleware,
     allow_headers=["*"],)
 
 app.include_router(auth.router)
+app.include_router(seller.router)
 
 @app.get('/')
 def home():
