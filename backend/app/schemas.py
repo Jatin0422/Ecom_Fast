@@ -83,3 +83,17 @@ class ProductResponse(BaseModel):
     image_url: str | None
 
     model_config = ConfigDict(from_attributes=True)
+
+
+class Product_Update(BaseModel):
+     p_name: str | None = Field(default=None, min_length=1, max_length=1000)
+     description: str | None = Field(default=None, max_length=1000)
+     image_url: AnyHttpUrl | None = None
+     category: ProductCategory | None = None
+     price: Decimal | None = Field(
+        default=None, gt=0, max_digits=10, decimal_places=2
+     )
+     mrp: Decimal | None = Field(
+        default=None, gt=0, max_digits=10, decimal_places=2
+    )
+     stock: int | None = Field(default=None, ge=0)
