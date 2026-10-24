@@ -46,7 +46,7 @@ function Login() {
       if (role === "seller") {
         navigate("/seller/dashboard", { replace: true });
       } else {
-        setMessage("Login successful.");
+        navigate("/customer", { replace: true });
       }
     } catch (error) {
       setMessage(

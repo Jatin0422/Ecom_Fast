@@ -1,5 +1,6 @@
 
 import AccountChoice from "./pages/AccountChoice";
+import CustomerProducts from "./pages/CustomerProducts";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -17,6 +18,7 @@ function App() {
       <Route path="/account" element={<AccountChoice />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/customer" element={<CustomerProducts />} />
       <Route path="/seller" element={<SellerLayout />}>
         <Route index element={<SellerDashboard />} />
         <Route path="dashboard" element={<SellerDashboard />} />
