@@ -12,6 +12,12 @@ const navigationItems = [
 function SellerLayout() {
   const navigate = useNavigate();
   const [storeName, setStoreName] = useState("");
+  const [dashboardSummary, setDashboardSummary] = useState({
+    total_orders: 0,
+    cancelled_orders: 0,
+    returns: 0,
+    order_value: 0,
+  });
   const [retryCount, setRetryCount] = useState(0);
   const [status, setStatus] = useState(() =>
     sessionStorage.getItem("access_token") ? "loading" : "unauthorized"
@@ -47,6 +53,12 @@ function SellerLayout() {
         const data = await response.json();
         if (isCurrent) {
           setStoreName(data.store_name || "");
+          setDashboardSummary({
+            total_orders: data.total_orders || 0,
+            cancelled_orders: data.cancelled_orders || 0,
+            returns: data.returns || 0,
+            order_value: data.order_value || 0,
+          });
           setStatus("authorized");
         }
       } catch {
@@ -157,7 +169,7 @@ function SellerLayout() {
           </div>
         </header>
         <div className="seller-content">
-          <Outlet context={{ storeName }} />
+          <Outlet context={{ storeName, dashboardSummary }} />
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Literal
 from decimal import Decimal
 from pydantic import (
@@ -6,6 +7,7 @@ from pydantic import (
     ConfigDict,
     EmailStr,
     Field,
+    field_validator,
     model_validator,
 )
 
@@ -83,6 +85,86 @@ class ProductResponse(BaseModel):
     image_url: str | None
 
     model_config = ConfigDict(from_attributes=True)
+
+
+class CartItemCreate(BaseModel):
+    product_id: int = Field(gt=0)
+    quantity: int = Field(default=1, ge=1)
+
+
+class CartItemQuantityUpdate(BaseModel):
+    quantity: int = Field(ge=1)
+
+
+class CheckoutRequest(BaseModel):
+    shipping_address: str = Field(min_length=1, max_length=500)
+    payment_method: Literal["cod"] = "cod"
+
+    @field_validator("shipping_address")
+    @classmethod
+    def validate_shipping_address(cls, value: str) -> str:
+        value = value.strip()
+        if not value:
+            raise ValueError("Shipping address cannot be blank")
+        return value
+
+
+class BuyNowRequest(CheckoutRequest):
+    product_id: int = Field(gt=0)
+    quantity: int = Field(default=1, ge=1)
+
+
+class CartProductResponse(BaseModel):
+    id: int
+    p_name: str
+    category: ProductCategory
+    price: Decimal
+    mrp: Decimal
+    stock: int
+    image_url: str | None
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+class CartItemResponse(BaseModel):
+    product_id: int
+    quantity: int
+    product: CartProductResponse
+
+
+class OrderItemResponse(BaseModel):
+    product_id: int
+    product_name: str
+    quantity: int
+    unit_price: Decimal
+
+
+class OrderResponse(BaseModel):
+    id: int
+    status: str
+    payment_method: str
+    payment_status: str
+    total_amount: Decimal
+    shipping_address: str
+    created_at: datetime
+    items: list[OrderItemResponse]
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+class SellerOrderItemResponse(BaseModel):
+    order_id: int
+    created_at: datetime
+    order_status: str
+    payment_method: str
+    payment_status: str
+    customer_name: str
+    shipping_address: str
+    product_id: int
+    product_name: str
+    quantity: int
+    unit_price: Decimal
+    item_total: Decimal
 
 
 class Product_Update(BaseModel):

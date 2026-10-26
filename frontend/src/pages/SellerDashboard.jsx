@@ -1,15 +1,34 @@
 import { useOutletContext } from "react-router-dom";
 import "../styles/SellerDashboard.css";
 
-const dashboardMetrics = [
-  { label: "Total orders", value: "0", symbol: "O", tone: "blue" },
-  { label: "Cancelled orders", value: "0", symbol: "C", tone: "red" },
-  { label: "Returns", value: "0", symbol: "R", tone: "amber" },
-  { label: "Sales", value: "$0.00", symbol: "$", tone: "green" },
-];
-
 function SellerDashboard() {
-  const { storeName } = useOutletContext();
+  const { storeName, dashboardSummary } = useOutletContext();
+  const dashboardMetrics = [
+    {
+      label: "Total orders",
+      value: dashboardSummary.total_orders,
+      symbol: "O",
+      tone: "blue",
+    },
+    {
+      label: "Cancelled orders",
+      value: dashboardSummary.cancelled_orders,
+      symbol: "C",
+      tone: "red",
+    },
+    {
+      label: "Returns",
+      value: dashboardSummary.returns,
+      symbol: "R",
+      tone: "amber",
+    },
+    {
+      label: "Order value",
+      value: `₹${Number(dashboardSummary.order_value).toFixed(2)}`,
+      symbol: "₹",
+      tone: "green",
+    },
+  ];
 
   return (
     <main className="seller-dashboard-page">
@@ -34,7 +53,11 @@ function SellerDashboard() {
             </div>
             <p className="seller-metric-label">{metric.label}</p>
             <p className="seller-metric-value">{metric.value}</p>
-            <p className="seller-metric-note">Metrics will appear here</p>
+            <p className="seller-metric-note">
+              {metric.label === "Returns"
+                ? "Return tracking is not configured"
+                : "Based on orders containing your products"}
+            </p>
           </article>
         ))}
       </section>

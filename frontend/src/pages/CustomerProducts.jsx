@@ -41,7 +41,10 @@ function ProductCard({ product }) {
   const [imageUnavailable, setImageUnavailable] = useState(!product.image_url);
 
   return (
-    <article className="customer-product-card">
+    <Link
+      className="customer-product-card customer-product-link"
+      to={`/products/${product.id}`}
+    >
       <div className="customer-product-image">
         {imageUnavailable ? (
           <span className="customer-product-image-placeholder">
@@ -75,8 +78,9 @@ function ProductCard({ product }) {
         >
           {product.stock > 0 ? "In stock" : "Out of stock"}
         </p>
+        <span className="customer-product-view-link">View details →</span>
       </div>
-    </article>
+    </Link>
   );
 }
 
@@ -144,13 +148,21 @@ function CustomerProducts() {
         <Link className="customer-store-brand" to="/customer">
           Market
         </Link>
-        <button
-          className="customer-store-logout"
-          type="button"
-          onClick={handleLogout}
-        >
-          Log out
-        </button>
+        <div className="customer-store-header-actions">
+          <Link className="customer-store-cart-link" to="/cart">
+            Cart
+          </Link>
+          <Link className="customer-store-cart-link" to="/orders">
+            Orders
+          </Link>
+          <button
+            className="customer-store-logout"
+            type="button"
+            onClick={handleLogout}
+          >
+            Log out
+          </button>
+        </div>
       </header>
 
       <main className="customer-store-main">

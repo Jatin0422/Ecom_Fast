@@ -88,6 +88,9 @@ class Order(Base):
     status: Mapped[str] = mapped_column(
         String(30), nullable=False, default="pending"
     )
+    payment_method: Mapped[str] = mapped_column(
+        String(20), nullable=False, default="cod", server_default="cod"
+    )
     payment_status: Mapped[str] = mapped_column(
         String(30), nullable=False, default="pending"
     )

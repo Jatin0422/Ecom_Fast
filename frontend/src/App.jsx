@@ -1,5 +1,9 @@
 
 import AccountChoice from "./pages/AccountChoice";
+import CustomerCart from "./pages/CustomerCart";
+import CustomerCheckout from "./pages/CustomerCheckout";
+import CustomerProductDetail from "./pages/CustomerProductDetail";
+import CustomerOrders from "./pages/CustomerOrders";
 import CustomerProducts from "./pages/CustomerProducts";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -19,6 +23,11 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/customer" element={<CustomerProducts />} />
+      <Route path="/cart" element={<CustomerCart />} />
+      <Route path="/orders" element={<CustomerOrders />} />
+      <Route path="/products/:productId" element={<CustomerProductDetail />} />
+      <Route path="/checkout" element={<CustomerCheckout />} />
+      <Route path="/checkout/:productId" element={<CustomerCheckout />} />
       <Route path="/seller" element={<SellerLayout />}>
         <Route index element={<SellerDashboard />} />
         <Route path="dashboard" element={<SellerDashboard />} />

@@ -15,7 +15,7 @@
 
 .seller-dashboard-eyebrow {
   margin-bottom: 8px;
-  color: #2563eb;
+  color: var(--seller-accent-deep);
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -24,22 +24,22 @@
 
 .seller-dashboard-header h1 {
   margin: 0;
-  color: #0f172a;
+  color: var(--seller-ink);
   font-size: clamp(2rem, 5vw, 2.75rem);
   letter-spacing: -0.04em;
 }
 
 .seller-dashboard-subtitle {
   margin-top: 8px;
-  color: #64748b;
+  color: var(--seller-muted);
 }
 
 .seller-dashboard-logout {
   padding: 10px 16px;
-  border: 1px solid #cbd5e1;
+  border: 1px solid var(--seller-border);
   border-radius: 8px;
-  background: #fff;
-  color: #334155;
+  background: var(--seller-surface);
+  color: var(--seller-ink);
   font: inherit;
   font-size: 0.9rem;
   font-weight: 600;
@@ -47,7 +47,7 @@
 }
 
 .seller-dashboard-logout:hover {
-  background: #f1f5f9;
+  background: var(--seller-accent-soft);
 }
 
 .seller-dashboard-metrics {
@@ -62,10 +62,10 @@
   min-height: 190px;
   padding: 24px;
   box-sizing: border-box;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--seller-border);
   border-radius: 14px;
-  background: #fff;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+  background: var(--seller-surface);
+  box-shadow: 0 10px 26px rgba(45, 42, 34, 0.07);
 }
 
 .seller-metric-icon {
@@ -79,34 +79,34 @@
 }
 
 .seller-metric-icon.blue {
-  background: #dbeafe;
-  color: #1d4ed8;
+  background: #e6ded1;
+  color: #855c42;
 }
 
 .seller-metric-icon.red {
-  background: #fee2e2;
-  color: #b91c1c;
+  background: #f0ded8;
+  color: #9a453c;
 }
 
 .seller-metric-icon.amber {
-  background: #fef3c7;
-  color: #b45309;
+  background: #f1e6cc;
+  color: #8b6837;
 }
 
 .seller-metric-icon.green {
-  background: #dcfce7;
-  color: #15803d;
+  background: #dfe8d8;
+  color: #4e6a4a;
 }
 
 .seller-metric-label {
   margin-top: 20px;
-  color: #64748b;
+  color: var(--seller-muted);
   font-size: 0.9rem;
 }
 
 .seller-metric-value {
   margin-top: 4px;
-  color: #0f172a;
+  color: var(--seller-ink);
   font-size: 1.8rem;
   font-weight: 700;
   letter-spacing: -0.03em;
@@ -114,13 +114,13 @@
 
 .seller-metric-note {
   margin-top: 4px;
-  color: #94a3b8;
+  color: #939187;
   font-size: 0.78rem;
 }
 
 .seller-dashboard-loading {
   padding-top: 20vh;
-  color: #64748b;
+  color: var(--seller-muted);
   text-align: center;
 }
 
@@ -129,7 +129,7 @@
   justify-items: center;
   gap: 16px;
   padding-top: 20vh;
-  color: #b91c1c;
+  color: #9a453c;
   text-align: center;
 }
 
